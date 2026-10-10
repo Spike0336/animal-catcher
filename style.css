@@ -12,7 +12,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive, sans-serif;
-  background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 55%, #90EE90 55%, #228B22 100%);
+  background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 50%, #90EE90 50%, #228B22 100%);
 }
 
 .screen {
@@ -36,7 +36,7 @@ html, body {
 
 .start-content {
   text-align: center;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.93);
   padding: 2.5rem 2rem;
   border-radius: 30px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.25);
@@ -117,7 +117,7 @@ h1 {
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 0.6rem 0.5rem;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.88);
   z-index: 20;
   font-size: clamp(0.9rem, 3.5vw, 1.2rem);
   font-weight: bold;
@@ -137,57 +137,116 @@ h1 {
   right: 0;
   bottom: 60px;
   overflow: hidden;
-  cursor: none; /* we use custom net */
+  cursor: none;
 }
 
-/* Clouds decoration */
+/* Soft clouds */
 #play-area::before {
-  content: "☁️ ☁️ ☁️";
+  content: "☁️     ☁️        ☁️";
   position: absolute;
-  top: 20px;
-  left: 10%;
-  font-size: 2.5rem;
-  opacity: 0.7;
-  animation: drift 40s linear infinite;
+  top: 12px;
+  left: 5%;
+  font-size: 2.2rem;
+  opacity: 0.65;
+  animation: drift 45s linear infinite;
   pointer-events: none;
+  z-index: 1;
 }
 
 @keyframes drift {
   0% { transform: translateX(0); }
-  100% { transform: translateX(80vw); }
+  100% { transform: translateX(70vw); }
 }
 
-/* ===== ANIMALS ===== */
+/* ===== HOLES IN THE GROUND ===== */
+.hole {
+  position: absolute;
+  width: 90px;
+  height: 40px;
+  transform: translate(-50%, -30%);
+  background: radial-gradient(ellipse at center, #3e2723 0%, #5d4037 40%, #4e342e 100%);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 8px 12px rgba(0,0,0,0.6),
+    0 2px 0 #8d6e63;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hole::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 8%;
+  width: 84%;
+  height: 14px;
+  background: #6d4c41;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* ===== ANIMALS (pop out of holes) ===== */
 .animal {
   position: absolute;
-  width: 70px;
-  height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.4rem;
   cursor: pointer;
-  transition: transform 0.15s;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-  z-index: 5;
-  will-change: transform, left, top;
+  z-index: 10;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  will-change: transform, opacity;
+  transform-origin: center bottom;
 }
 
-.animal:active {
-  transform: scale(0.9);
+/* Pop up from hole */
+.animal.popping {
+  animation: popUp 0.22s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
 }
 
+@keyframes popUp {
+  0% {
+    transform: scale(0.2) translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.animal.visible {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Dive back into hole */
+.animal.hiding {
+  animation: diveDown 0.28s ease-in forwards;
+}
+
+@keyframes diveDown {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.3) translateY(25px);
+    opacity: 0;
+  }
+}
+
+/* Caught celebration on the animal itself */
 .animal.caught {
-  animation: catchPop 0.45s forwards;
-  pointer-events: none;
+  animation: catchBurst 0.55s forwards;
   z-index: 30;
+  pointer-events: none;
 }
 
-@keyframes catchPop {
+@keyframes catchBurst {
   0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.6); opacity: 0.9; }
-  100% { transform: scale(0); opacity: 0; }
+  30% { transform: scale(1.5) rotate(8deg); opacity: 1; }
+  100% { transform: scale(0) rotate(-15deg); opacity: 0; }
 }
 
 /* ===== NET ===== */
@@ -197,15 +256,15 @@ h1 {
   height: 120px;
   border-radius: 50%;
   border: 6px solid #5d4037;
-  background: radial-gradient(circle, rgba(139, 195, 74, 0.25) 0%, rgba(139, 195, 74, 0.05) 70%);
-  box-shadow: 
+  background: radial-gradient(circle, rgba(139, 195, 74, 0.28) 0%, rgba(139, 195, 74, 0.06) 70%);
+  box-shadow:
     inset 0 0 20px rgba(0,0,0,0.1),
     0 0 0 3px #8bc34a,
     0 8px 25px rgba(0,0,0,0.3);
   pointer-events: none;
-  z-index: 15;
+  z-index: 25;
   transform: translate(-50%, -50%);
-  transition: width 0.1s, height 0.1s;
+  transition: width 0.1s, height 0.1s, background 0.1s;
 }
 
 #net::before {
@@ -220,35 +279,86 @@ h1 {
 #net.active {
   width: 140px;
   height: 140px;
-  background: radial-gradient(circle, rgba(255, 235, 59, 0.4) 0%, rgba(139, 195, 74, 0.15) 70%);
+  background: radial-gradient(circle, rgba(255, 235, 59, 0.45) 0%, rgba(139, 195, 74, 0.18) 70%);
   border-color: #f57f17;
+  box-shadow:
+    inset 0 0 20px rgba(0,0,0,0.1),
+    0 0 0 4px #ffeb3b,
+    0 8px 25px rgba(0,0,0,0.35);
 }
 
-/* ===== CATCH MESSAGE ===== */
+/* ===== BIG CELEBRATION MESSAGE ===== */
 #catch-message {
   position: absolute;
-  top: 40%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255,255,255,0.95);
-  padding: 1rem 2rem;
-  border-radius: 20px;
-  font-size: clamp(1.4rem, 6vw, 2.2rem);
+  background: linear-gradient(135deg, #fff9c4, #ffffff);
+  padding: 1.3rem 2.2rem;
+  border-radius: 24px;
   font-weight: bold;
   color: #e91e63;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 0 6px #ffeb3b;
   z-index: 40;
   pointer-events: none;
   text-align: center;
-  animation: messagePop 1.8s forwards;
+  min-width: 240px;
 }
 
-@keyframes messagePop {
-  0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
-  15% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
-  30% { transform: translate(-50%, -50%) scale(1); }
-  80% { opacity: 1; }
-  100% { opacity: 0; transform: translate(-50%, -80%) scale(0.9); }
+#catch-message.big-celebrate {
+  animation: bigCelebrate 2.2s forwards;
+}
+
+@keyframes bigCelebrate {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
+  }
+  12% {
+    transform: translate(-50%, -50%) scale(1.25);
+    opacity: 1;
+  }
+  22% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -70%) scale(0.9);
+  }
+}
+
+.celebrate-title {
+  font-size: clamp(1.5rem, 6vw, 2.3rem);
+  line-height: 1.2;
+  margin-bottom: 0.3rem;
+}
+
+.celebrate-sub {
+  font-size: clamp(1rem, 4vw, 1.4rem);
+  color: #5d4037;
+}
+
+/* ===== CONFETTI ===== */
+.confetti {
+  position: absolute;
+  pointer-events: none;
+  z-index: 35;
+  animation: confettiFly 1.0s cubic-bezier(0.15, 0.7, 0.4, 1) forwards;
+}
+
+@keyframes confettiFly {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0.3);
+    opacity: 0;
+  }
 }
 
 /* ===== CONTROLS ===== */
@@ -309,38 +419,25 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
-/* Particles for fun */
-.particle {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 25;
-  animation: particleFly 0.8s forwards;
-}
-
-@keyframes particleFly {
-  0% { transform: translate(0,0) scale(1); opacity: 1; }
-  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
-}
-
-/* Responsive tweaks */
+/* Responsive */
 @media (max-width: 600px) {
-  .animal {
-    width: 58px;
-    height: 58px;
-    font-size: 2rem;
+  .hole {
+    width: 72px;
+    height: 32px;
   }
   #net {
     width: 100px;
     height: 100px;
   }
   #net.active {
-    width: 115px;
-    height: 115px;
+    width: 118px;
+    height: 118px;
   }
   .start-content {
     padding: 1.8rem 1.2rem;
+  }
+  #catch-message {
+    padding: 1rem 1.4rem;
+    min-width: 200px;
   }
 }

@@ -1,20 +1,23 @@
 # 🦋 Animal Catcher
 
-**A fun, colorful children's game where kids catch animals in a net and learn their names!**
+**A fun, colorful children's game where animals pop out of holes in the ground!**
 
-Each animal announces itself with a friendly voice:  
-*"Hi! I'm a pig!"* • *"You caught me! I'm a wolf!"* • and more.
+Be quick – they only stay up for a short time. When you catch one you get a big celebration with confetti, a fanfare, and the animal proudly says:
+
+*"I'm a frog. You caught me!"*
 
 ---
 
 ## ✨ Features
 
-- **220+ different animals** – farm animals, wild animals, birds, sea creatures, insects and more
-- **Voice announcements** – animals tell you their names using the browser’s built-in speech
-- **Big friendly net** – move it with mouse or finger, click/tap to catch
+- **240+ different animals** – farm animals, wild animals, birds, sea creatures, insects and more
+- **Animals pop out of holes** – like a lively Whac-A-Mole with animals
+- **Fast & challenging** – they appear and disappear quickly so catching them feels rewarding
+- **Big celebration** on every catch: confetti explosion + triumphant fanfare + voice
+- **Voice announcements** – clear phrases like “I’m a frog. You caught me!”
+- **Big friendly net** – move with mouse or finger, click/tap to catch
 - **Touch-friendly** – works great on tablets and phones
 - **Score, unique animals, levels** – difficulty gently increases
-- **Bright, playful design** with bouncing animals, particles and animations
 - **No installs, no accounts** – just open and play
 - **100% offline** after first load (pure HTML/CSS/JS)
 
@@ -23,9 +26,9 @@ Each animal announces itself with a friendly voice:
 ## 🎮 How to Play
 
 1. Click **Start Catching!**
-2. Move the green net with your mouse or finger
-3. Click or tap when an animal is inside the net (or just tap the animal)
-4. Listen to the animal tell you its name!
+2. Watch the holes – animals pop up quickly then dive back down
+3. Move the green net over an animal and click / tap (or just tap the animal)
+4. Enjoy the big confetti celebration and listen to the animal announce itself
 5. Catch as many as you can and try to discover lots of different animals
 
 ---
