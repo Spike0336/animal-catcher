@@ -1,8 +1,8 @@
 # 🦋 Animal Catcher
 
-**A fun, colorful children's game where animals pop out of holes in the ground!**
+**A fun children's game where real animal photos pop out of holes in the ground!**
 
-Be quick – they only stay up for a short time. When you catch one you get a big celebration with confetti, a fanfare, and the animal proudly says:
+Only one animal appears at a time and they disappear quickly – so catching them feels exciting. When you catch one you get a big celebration with confetti, a fanfare, and the animal proudly says:
 
 *"I'm a frog. You caught me!"*
 
@@ -11,8 +11,9 @@ Be quick – they only stay up for a short time. When you catch one you get a bi
 ## ✨ Features
 
 - **240+ different animals** – farm animals, wild animals, birds, sea creatures, insects and more
-- **Animals pop out of holes** – like a lively Whac-A-Mole with animals
-- **Fast & challenging** – they appear and disappear quickly so catching them feels rewarding
+- **Real animal photos** from Wikimedia Commons (clear pictures of lions, frogs, elephants, etc.)
+- **One animal at a time** – pops out of a hole and disappears quickly
+- **Faster pace** – stays visible for a shorter time as you level up
 - **Big celebration** on every catch: confetti explosion + triumphant fanfare + voice
 - **Voice announcements** – clear phrases like “I’m a frog. You caught me!”
 - **Big friendly net** – move with mouse or finger, click/tap to catch
