@@ -194,10 +194,10 @@ function createHoles() {
   const areaW = playArea.clientWidth;
   const areaH = playArea.clientHeight;
   const cols = 3, rows = 2;
-  const marginX = areaW * 0.12;
-  const marginY = areaH * 0.32;
+  const marginX = areaW * 0.15;
+  const marginY = areaH * 0.28;
   const usableW = areaW - marginX * 2;
-  const usableH = areaH - marginY - areaH * 0.1;
+  const usableH = areaH - marginY - areaH * 0.12;
 
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
@@ -240,7 +240,7 @@ function updateNetPosition() {
 
 function gameLoop(timestamp) {
   if (!isPlaying || isPaused) return;
-  const gap = Math.max(380, 900 - level * 55);
+  const gap = Math.max(900, 1800 - level * 80);
   if (!currentAnimal && timestamp - lastSpawn > gap) {
     spawnAnimal();
     lastSpawn = timestamp;
@@ -263,7 +263,7 @@ function spawnAnimal() {
     ? photoNames[Math.floor(Math.random() * photoNames.length)]
     : UNIQUE_ANIMALS[Math.floor(Math.random() * UNIQUE_ANIMALS.length)];
 
-  const size = 82;
+  const size = 160;
   const el = document.createElement("div");
   el.className = "animal popping";
   el.style.width = size + "px";
@@ -303,7 +303,7 @@ function spawnAnimal() {
   }
 
   el.style.left = (hole.x - size / 2) + "px";
-  el.style.top = (hole.y - size / 2 - 10) + "px";
+  el.style.top = (hole.y - size / 2 - 18) + "px";
   playArea.appendChild(el);
 
   const stayTime = Math.max(650, 1300 - level * 70) + Math.random() * 180;
